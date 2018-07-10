@@ -1,5 +1,10 @@
 <template>
   <div class="form">
+    <div class = "alert" v-show="alertText!=''">
+      <h3> Submitted: </h3>
+      <p>{{alertText}}</p>
+      <button class="copyContact alertButton" v-on:click="alertText=''">Okay</button>
+    </div>
     <div class="header">
       <h1>CORE Tech Services Work Order Form</h1>
   
@@ -81,12 +86,8 @@ import checkBox from '~/components/checkBox.vue'
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 const verifyForm = require('~/lib/verifyForm')
-
-export default {
-  components: {
-    checkBox
-  },
-  data: () => ({
+const initialState = function(){
+  return {
     account: { //Not using camel case because user will see these keys (IE: "Error, CostEstimate not entered!")
       KFS:'',
       Name:'',
@@ -110,26 +111,33 @@ export default {
       Phone:'',
       Email:''
     },
-  }),
+    alertText: ''
+  }
+}
+
+export default {
+  components: {
+    checkBox
+  },
+  data: () => {return initialState()},
   methods: {
     copyContact(){
       this.contact.Name = this.account.Name
       this.contact.Phone = this.account.Phone
       this.contact.Email = this.account.Email
     },
-    submit(){
-      fetch('/api/submit',{
+    async submit(){
+      let response = await fetch('/api/submit',{
         method: 'post',
         headers: {"Content-Type": "application/json; charset=utf-8",},
         body: JSON.stringify(this.$data)
       })
-      .then(function(response) {
-        if (response.status >= 400) {
-          console.error("Bad response from server");
-          console.log(response)
-        }
-      })
-
+      if (response.status >= 400) {
+        console.error("Bad response from server");
+      }
+      let text = await response.text()
+      if(text.startsWith('Success')) this.$data=initialState();
+      this.alertText = text;
     }
   },
   computed: {
@@ -156,8 +164,31 @@ input {
   font-size: 1em;
 }
 
+.alert {
+  position: fixed;
+  z-index: 5;
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.alert p {
+  margin: 1em 0 1em 0;
+}
+.alertButton {
+  width: 50%;
+}
+
 .header {
   text-align: center;
+  position: relative;
+  z-index: 3;
 }
 
 .header h1 {
@@ -176,6 +207,8 @@ input {
   padding: 1em;
   background-color: white;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  position: relative;
+  z-index: 3;
 }
 
 .area h2 {
