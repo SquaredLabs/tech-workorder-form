@@ -149,6 +149,7 @@ export default {
 html, body {
   font-family: "Space Mono";
   background: #e2e1e0;
+  color: black;
 }
 
 input {
@@ -210,6 +211,8 @@ input {
   background-color: rgb(226, 226, 226);
   padding: 0.5em;
   border-radius: 2px;
+  color: black;
+  font-weight: bold;
   transition: ease 0.3s all;
 }
 
@@ -236,6 +239,8 @@ hr {
   outline: none;
   padding: 1em;
   border-radius: 2px;
+  color: black;
+  background-color: rgb(226, 226, 226);
   transition: ease 0.3s all;
 }
 .copyContact:hover {
@@ -251,6 +256,7 @@ hr {
   padding: 1em;
   border-radius: 2px;
   transition: ease 0.3s all;
+  color: black;
   box-shadow: 0 1px 3px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.23);
   background-color: rgb(214, 255, 214);
 }
