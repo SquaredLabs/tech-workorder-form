@@ -18,8 +18,8 @@
           <input class="textBox" type="text" v-model="account.Phone" placeholder="Phone"/>
       </div>
       <div class="oneLiner">
-          <input class="textBox" type="text" v-model="account.Email" placeholder="Email"/>
-          <input class="textBox" id="addressBox" type="text" v-model="account.Address" placeholder="Address"/>
+          <input class="textBox" type="text" v-model="account.Email" placeholder="Account Email"/>
+          <input class="textBox" id="addressBox" type="text" v-model="account.Address" placeholder="Campus Address"/>
       </div>
     
     </div>
@@ -28,11 +28,11 @@
       <h2>Request Details</h2>
       <hr/>
       <div class="oneLiner">
-          <h3>Type</h3>
+          <h3>Type (IE: Cabinet, lens, printer)</h3>
           <input class="textBox" type="text" v-model="request.Type" placeholder="Type"/>
       </div>
       <div class="oneLiner">
-          <h3>Cost Estimate</h3>
+          <h3>Cost Estimate (Optional)</h3>
           <input class="textBox" type="text" v-model="request.CostEstimate" 
           placeholder="Cost Estimate (optional)"/>
       </div>
