@@ -1,4 +1,11 @@
 const { Router } = require('express')
+var fs = require('fs'); 
+var path =require('path')
+
+fs.writeFile(path.join(__dirname,'../../WorkOrders.db'), '', { flag: 'wx' }, function (err) {
+    if(err)console.log(err)
+    else console.log("Created WorkOrder.db");
+});
 
 const router = Router()
 
