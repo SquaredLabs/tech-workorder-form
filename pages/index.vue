@@ -154,21 +154,18 @@ export default {
 
 @import url('https://fonts.googleapis.com/css?family=Space+Mono');
 
+/* Soin Sans Pro will be used */
+
 html, body {
   font-family: "Space Mono";
-  background: #e2e1e0;
+  background: #f43f3e;
   color: black;
-}
-
-input {
-  font-size: 1em;
 }
 
 .alert {
   position: fixed;
   z-index: 5;
   background-color: white;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -189,6 +186,7 @@ input {
   text-align: center;
   position: relative;
   z-index: 3;
+  color: white;
 }
 
 .header h1 {
@@ -206,7 +204,6 @@ input {
   border-radius: 1px;
   padding: 1em;
   background-color: white;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   position: relative;
   z-index: 3;
 }
@@ -222,17 +219,16 @@ input {
 }
 
 .oneLiner * {
-  margin-top: 1em;
+  margin: 1em 1em 0 0;
+  padding: 0.5em;
   flex: 1 1 0;
+  font-size: 1rem;
 }
 
 .oneLiner h3{
   margin-right: 2em;
 }
 
-.oneLiner input {
-  margin-right: 1em; 
-}
 
 #addressBox {
   flex-grow: 1;
@@ -254,7 +250,7 @@ input {
 }
 
 .textBox:focus {
-  background-color: rgb(145, 196, 209);
+  background-color: #f43f3e80;
 }
 
 hr {
@@ -277,7 +273,7 @@ hr {
   transition: ease 0.3s all;
 }
 .copyContact:hover {
-  background-color: rgb(142, 210, 235);
+  background-color: rgb(235, 142, 142);
   cursor: pointer;
 }
 
@@ -290,12 +286,10 @@ hr {
   border-radius: 2px;
   transition: ease 0.3s all;
   color: black;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.23);
   background-color: rgb(214, 255, 214);
 }
 
 .submit:hover {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   cursor: pointer;
   background-color: rgb(153, 255, 153);
 }
