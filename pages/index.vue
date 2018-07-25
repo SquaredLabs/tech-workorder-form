@@ -86,7 +86,7 @@ import checkBox from '~/components/checkBox.vue'
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 const verifyForm = require('~/lib/verifyForm')
-const initialState = function(){
+const getInitialState = function(){
   return {
     account: { //Not using camel case because user will see these keys (IE: "Error, CostEstimate not entered!")
       KFS:'',
@@ -119,7 +119,7 @@ export default {
   components: {
     checkBox
   },
-  data: () => {return initialState()},
+  data: () => {return getInitialState()},
   methods: {
     copyContact(){
       this.contact.Name = this.account.Name
@@ -136,7 +136,12 @@ export default {
         console.error("Bad response from server");
       }
       let text = await response.text()
-      if(text.startsWith('Success')) this.$data=initialState();
+      if(text.startsWith('Success')) {
+        let initialState = getInitialState()
+        this.$data.account=initialState.account
+        this.$data.request=initialState.request
+        this.$data.contact=initialState.contact
+      };
       this.alertText = text;
     }
   },
